@@ -11,14 +11,23 @@ const handler = (req, res) => {
         },
       },
     });
-  } else {
+  } else if (type == "EYENAZ_INIT") {
     res.status(200).json({
-      type: "EYENAZ_SETt",
+      type: "EYENAZ_SET",
       payload: {
         sessionId: "sI1",
-        pageId: "pI1",
+        visitorId: "vI1",
       },
     });
+  } else if (type == "EYENAZ_RECORDING_START") {
+    res.status(200).json({
+      type: "EYENAZ_RECORDING_START",
+      payload: {
+        mode: "pro",
+      },
+    });
+  } else {
+    res.status(200).json({});
   }
 };
 export default handler;
