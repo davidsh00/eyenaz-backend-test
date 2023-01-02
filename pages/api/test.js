@@ -1,6 +1,6 @@
 const handler = (req, res) => {
-  console.log(req.body);
   const { type, payload } = req.body;
+  console.log(req.body);
   if (type == "EYENAZ_ERROR") {
     res.status(200).json({
       type: "EYENAZ_LOG",
@@ -13,11 +13,13 @@ const handler = (req, res) => {
     });
   } else if (type == "EYENAZ_INIT") {
     res.status(200).json({
-      type: "EYENAZ_SET",
-      payload: {
+      EYENAZ_SET: {
         sessionId: "sI1",
         visitorId: "vI1",
+        mouseMoveDelay: 500,
+        recordLogPostDelay: 3000,
       },
+      EYENAZ_RECORDING_START: {},
     });
   } else if (type == "EYENAZ_RECORDING_START") {
     res.status(200).json({
@@ -26,6 +28,8 @@ const handler = (req, res) => {
         mode: "pro",
       },
     });
+  } else if (type === "EYENAZ_RECORDING_LOG") {
+    res.status(200).json({});
   } else {
     res.status(200).json({});
   }
